@@ -1,0 +1,254 @@
+/* server/public/widget-core.css */
+
+.forge-widget-root {
+    position: fixed;
+    z-index: 99999999;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    user-select: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    opacity: 0;
+    box-sizing: border-box;
+}
+
+/* =========================================================================
+   ✧ CLIENT AXIS DESIGN METRICS MAPPING
+   ========================================================================= */
+.forge-widget-root.forge-align-x-right { right: var(--forge-offset-x, 24px); }
+.forge-widget-root.forge-align-x-left { left: var(--forge-offset-x, 24px); }
+.forge-widget-root.forge-align-y-bottom { bottom: var(--forge-offset-y, 24px); }
+.forge-widget-root.forge-align-y-top { top: var(--forge-offset-y, 24px); }
+
+/* =========================================================================
+   ✧ STEP 3: INITIAL PAGE LOAD ENTRANCE TRANSITIONS
+   ========================================================================= */
+.forge-widget-root.forge-entrance-slide-up { transform: translateY(40px); }
+.forge-widget-root.forge-entrance-pop-in { transform: scale(0.6); }
+.forge-widget-root.forge-entrance-fade-in { transform: none; }
+
+.forge-widget-root.forge-speed-slow { transition: opacity 0.85s ease-out, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1); }
+.forge-widget-root.forge-speed-normal { transition: opacity 0.45s ease-out, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.forge-widget-root.forge-speed-fast { transition: opacity 0.2s ease-out, transform 0.2s ease-out; }
+
+.forge-widget-root.forge-entered {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+.forge-hidden {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+/* =========================================================================
+   ✧ STEP 1: LAUNCHER KINETICS HOVER INTERPOLATION
+   ========================================================================= */
+.forge-launcher-btn {
+    height: 48px;
+    min-width: 48px;
+    width: max-content !important;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: var(--forge-primary, #7c3aed) !important; 
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-direction: row !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 0 13px;
+    outline: none;
+    transition: box-shadow 0.25s ease, transform var(--forge-hover-speed, 0.3s) ease;
+}
+
+/* Directional layout ordering based on page placement configuration rules */
+.forge-align-x-left .forge-launcher-btn {
+    flex-direction: row;
+}
+.forge-align-x-right .forge-launcher-btn {
+    flex-direction: row-reverse;
+}
+
+.forge-icon-frame {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.forge-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.forge-glyph-inner {
+    font-size: 16px;
+    line-height: 1;
+    display: inline-block;
+    color: white !important;
+}
+
+.forge-launcher-text {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    max-width: 0px;
+    opacity: 0;
+    transition: max-width var(--forge-hover-speed, 0.3s) cubic-bezier(0.25, 1, 0.5, 1),
+                opacity var(--forge-hover-speed, 0.2s) ease,
+                margin var(--forge-hover-speed, 0.3s) ease;
+}
+
+/* Symmetrical combined pill states layout constraints */
+.forge-align-x-left .forge-launcher-btn.forge-pill-active .forge-launcher-text,
+.forge-align-x-left .forge-launcher-btn.forge-hover-expand-text:hover .forge-launcher-text {
+    max-width: 180px;
+    opacity: 1;
+    padding-left: 10px;
+    padding-right: 2px;
+}
+
+.forge-align-x-right .forge-launcher-btn.forge-pill-active .forge-launcher-text,
+.forge-align-x-right .forge-launcher-btn.forge-hover-expand-text:hover .forge-launcher-text {
+    max-width: 180px;
+    opacity: 1;
+    padding-right: 2px;
+    padding-left: 10px;
+}
+
+/* Hover Kinetics Profile Variations Mapping */
+.forge-launcher-btn.forge-hover-bounce {
+    transition: transform var(--forge-hover-speed, 0.3s) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.forge-launcher-btn.forge-hover-bounce:hover {
+    transform: translateY(-6px);
+}
+.forge-launcher-btn.forge-hover-pulse-glow:hover {
+    box-shadow: 0 0 24px var(--forge-primary);
+    transform: scale(1.03);
+}
+
+/* =========================================================================
+   ✧ STEP 2: CHAT CONSOLE WORKSPACE MECHANICS
+   ========================================================================= */
+.forge-chat-panel {
+    width: 350px;
+    height: 520px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: var(--forge-surface, #111827);
+    border-radius: var(--forge-radius, 16px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Scale origin vector assignment anchors */
+.forge-align-y-bottom.forge-align-x-right .forge-chat-panel { transform-origin: bottom right; }
+.forge-align-y-bottom.forge-align-x-left .forge-chat-panel { transform-origin: bottom left; }
+.forge-align-y-top.forge-align-x-right .forge-chat-panel { transform-origin: top right; }
+.forge-align-y-top.forge-align-x-left .forge-chat-panel { transform-origin: top left; }
+
+.forge-chat-panel.forge-opening {
+    animation: forgeOpenAnim var(--forge-transition-speed, 0.4s) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.forge-chat-panel.forge-closing {
+    animation: forgeCloseAnim var(--forge-transition-speed, 0.4s) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes forgeOpenAnim {
+    0% { opacity: 0; transform: scale(0.9) translateY(15px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes forgeCloseAnim {
+    0% { opacity: 1; transform: scale(1) translateY(0); }
+    100% { opacity: 0; transform: scale(0.9) translateY(15px); }
+}
+
+/* Chat Header Area Layout */
+.forge-header {
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    flex-shrink: 0;
+}
+.forge-header-identity { display: flex; align-items: center; gap: 10px; }
+.forge-header-avatar {
+    height: 34px;
+    width: 34px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.forge-header-meta h5 { margin: 0; font-size: 13px; font-weight: 700; color: #f4f4f5; text-align: left; }
+.forge-header-meta p { 
+    margin: 3px 0 0 0; font-size: 9px; font-family: monospace; text-transform: uppercase; letter-spacing: 0.05em; 
+    display: flex; align-items: center; gap: 4px; color: #a1a1aa;
+}
+.forge-close-btn { background: transparent; border: none; color: #71717a; font-size: 20px; cursor: pointer; line-height: 1; }
+.forge-close-btn:hover { color: #ffffff; }
+
+/* Conversation Thread Scroller */
+.forge-thread-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background-color: var(--forge-surface, #111827) !important;
+}
+.forge-system-card { max-width: 88%; margin: auto auto; text-align: center; }
+.forge-system-card h6 { margin: 0 0 4px 0; font-size: 10px; font-family: monospace; text-transform: uppercase; letter-spacing: 0.05em; }
+.forge-system-card p { margin: 0; font-size: 11px; color: #91919e; line-height: 1.5; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); padding: 10px 14px; border-radius: 12px; }
+
+.forge-msg-row { display: flex; width: 100%; }
+.forge-msg-user { justify-content: flex-end; }
+.forge-msg-bot { justify-content: flex-start; }
+
+.forge-bubble {
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 82%;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.forge-msg-user .forge-bubble { color: #ffffff; }
+.forge-msg-bot .forge-bubble { background-color: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.06); color: #e4e4e7; }
+
+/* In-line Processing Status Loader Loops */
+.forge-loader-dots { display: flex; align-items: center; gap: 4px; padding: 12px 16px !important; }
+.forge-loader-dots span { height: 4px; width: 4px; border-radius: 50%; background-color: #a1a1aa; animation: forgeBounce 0.5s infinite alternate; }
+.forge-loader-dots span:nth-child(2) { animation-delay: 0.15s; }
+.forge-loader-dots span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes forgeBounce { 0% { transform: translateY(2px); opacity: 0.4; } 100% { transform: translateY(-3px); opacity: 1; } }
+
+/* Bottom Composer Action Form Row */
+.forge-footer { padding: 12px; border-top: 1px solid rgba(255, 255, 255, 0.05); background-color: rgba(0, 0, 0, 0.12); display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+.forge-footer input { flex-grow: 1; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 10px 14px; font-size: 12px; color: #ffffff; outline: none; }
+.forge-send-btn { height: 34px; width: 34px; border-radius: 12px; border: none; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.forge-send-btn svg { width: 12px; height: 12px; fill: none; stroke: currentColor; }
+
+/* Webkit Scrollbar Controls */
+.forge-thread-body::-webkit-scrollbar { width: 4px; }
+.forge-thread-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.06); border-radius: 10px; }

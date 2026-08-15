@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>External Third Party Client Site</title>
+</head>
+
+<body style="background: #2b303c;">
+
+    <h1 style="color: white; padding: 40px;">My Core Experience Platform
+        Portfolio Showcase</h1>
+    <p id="Text" style="color: white;"></p>
+
+    <!-- 🌟 INJECTED MOCK E-COMMERCE CUSTOMER METADATA CODES -->
+    <script>
+        window.AgentForgeIdentity = {
+            customerName: "Aryan Chheda",
+            accountTier: "VIP Platinum Elite",
+            recentOrderNumber: "#ORD-993821-X",
+            orderStatus: "Out for Delivery (Arriving in 45 minutes)",
+            deliveryAddress: "Ahmedabad, Gujarat, India",
+            lastPurchasedAsset: "Zaydn ASH Beige Brown Sneakers",
+            activeCartValue: "₹4,200 INR"
+        };
+    </script>
+
+    <!-- 🌟 CORE SCRIPT INJECTOR DESPATCHER -->
+    <!-- <script
+            src="https://agent-forge-ac.vercel.app/AgentConfigs/widget.js"
+            data-agent-id="6a22a5a40741c0e42d0120bd"
+            data-align-x="right" data-align-y="bottom" data-offset-x="40px"
+            data-offset-y="40px"
+            defer></script> -->
+
+<script 
+  src="http://localhost:5173/AgentConfigs/widget.js" 
+  data-agent-id="6a800d9b8fa77d7470eb5855" 
+  defer
+></script>
+</body>
+
+</html>
